@@ -1,19 +1,27 @@
-#include "main.h"
-/**
-  *arr_diff - find the difference between arrays
-  *@first: first array of integers
-  *@second: second array of integers
-  *@columns: width of the arrays
-  *Return: pointer to integers
-  */
-int *arr_diff(int *first, int *second, int columns)
+#include "main.h" 
+/**arr_diff - find the difference between arrays
+ *@first: first array of integers
+ *@second: array of integer pointers
+ *@rows: height of the arrays
+ *@columns: width of the arrays
+ *Return: pointer to integers
+ */
+int *arr_diff(int *first, int **second, int rows, int columns)
 {
 	int *arr = (int *)malloc(sizeof(int) * columns);
-	int i = 0;
+	int i, j, sum;
+	i = j = sum = 0;
 
 	while (i < columns)
 	{
-		arr[i] = first[i] - second[i];
+		j = sum = 0;
+		while (j < rows)
+        	{
+                	sum += second[i][j];
+			j++;
+        	}
+
+		arr[i] = first[i] - sum;
 		i++;
 	}
 	return (arr);
